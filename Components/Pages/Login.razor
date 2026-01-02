@@ -1,0 +1,49 @@
+@page "/login"
+@inject NavigationManager NavigationManager
+
+<h3>Login</h3>
+
+<EditForm Model="Model" FormName="LoginForm" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div>
+        <label for="username">Username:</label>
+        <InputText id="username" @bind-Value="Model!.Username" />
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <InputText id="password" type="password" @bind-Value="Model!.Password" />
+    </div>
+
+    <button type="submit">Login</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private UserModel? Model {get; set;}
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private async Task HandleLogin()
+    {
+        // Dummy authentication
+        if (Model?.Username == "testuser" && Model?.Password == "password")
+        {
+            // Simulate login success
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/failed_login");
+        }
+    }
+
+    public class UserModel
+    {
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+    }
+}

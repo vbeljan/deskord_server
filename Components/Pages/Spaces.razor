@@ -1,0 +1,26 @@
+﻿@page "/"
+@using Microsoft.EntityFrameworkCore.Diagnostics;
+@using deskord_server.Data
+@using deskord_server.Models
+@inject AppDbContext AppDbContext;
+
+
+<PageTitle>Spaces</PageTitle>
+        @{
+if (desks == null) {
+    <div>Loading...</div>
+    }
+else {
+    foreach (var desk in desks) {
+        <DeskComponent Desk="desk" />
+        }
+            
+    }
+}
+
+@code {
+    private List<Desk> desks = null;
+    protected override async Task OnInitializedAsync(){
+    desks = await DbInterface.GetAllDesks(AppDbContext);
+    }
+}
