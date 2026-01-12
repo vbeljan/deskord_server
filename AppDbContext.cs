@@ -18,6 +18,7 @@ namespace deskord_server.Data{
         }
 
         public DbSet<Desk> desks {get; set;}
+        public DbSet<User> users {get; set;}
         public event EventHandler ChangeTrackerStateChanged;
     }
     

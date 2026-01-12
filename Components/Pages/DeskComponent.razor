@@ -3,6 +3,7 @@
 @using deskord_server.Data
 @using deskord_server.Models
 @inject AppDbContext AppDbContext
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage;
 
 @code {
     [Parameter]
@@ -16,9 +17,18 @@
         return Desk.occupiedby == null ? $"Available" : Desk.occupiedby;
     }
 
-    private void HandleReserve() {
-        Desk.occupiedby = "USER";
-        DbInterface.Save(AppDbContext);
+    private async Task HandleReserve() {
+        if (await sessionStorage.ContainKeyAsync("user")) {
+            var user = 
+                await sessionStorage.GetItemAsync<User>("user");
+            Console.WriteLine("STORED USER: {user}");
+            Desk.occupiedby = user.fullname;
+            await DbInterface.Save(AppDbContext, [Desk]);
+        }
+        else {
+            var logdata = await sessionStorage.KeysAsync();
+            Console.WriteLine("NO STORED USER: {0}", logdata);
+        } 
         return;
     }
 }

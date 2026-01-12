@@ -1,13 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "Xk02rcTU1dE=",
+  "dgSpecHash": "5YuPsAgg9KU=",
   "success": true,
   "projectFilePath": "/home/vanja/Projekti/deskord_server/deskord_server.csproj",
   "expectedPackageFiles": [
+    "/home/vanja/.nuget/packages/blazored.sessionstorage/2.4.0/blazored.sessionstorage.2.4.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore/2.3.0/microsoft.aspnetcore.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0/microsoft.aspnetcore.app.internal.assets.10.0.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.3.0/microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.authentication.core/2.3.0/microsoft.aspnetcore.authentication.core.2.3.0.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.authorization/7.0.1/microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.components/7.0.1/microsoft.aspnetcore.components.7.0.1.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.components.analyzers/7.0.1/microsoft.aspnetcore.components.analyzers.7.0.1.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.components.forms/7.0.1/microsoft.aspnetcore.components.forms.7.0.1.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.components.web/7.0.1/microsoft.aspnetcore.components.web.7.0.1.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.connections.abstractions/2.3.0/microsoft.aspnetcore.connections.abstractions.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.diagnostics/2.3.0/microsoft.aspnetcore.diagnostics.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.diagnostics.abstractions/2.3.0/microsoft.aspnetcore.diagnostics.abstractions.2.3.0.nupkg.sha512",
@@ -20,6 +26,7 @@
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.http.extensions/2.3.0/microsoft.aspnetcore.http.extensions.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.http.features/2.3.0/microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.httpoverrides/2.3.0/microsoft.aspnetcore.httpoverrides.2.3.0.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.aspnetcore.metadata/7.0.1/microsoft.aspnetcore.metadata.7.0.1.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.routing/2.3.0/microsoft.aspnetcore.routing.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.routing.abstractions/2.3.0/microsoft.aspnetcore.routing.abstractions.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.server.iisintegration/2.3.0/microsoft.aspnetcore.server.iisintegration.2.3.0.nupkg.sha512",
@@ -59,12 +66,25 @@
     "/home/vanja/.nuget/packages/microsoft.extensions.options/10.0.1/microsoft.extensions.options.10.0.1.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.extensions.options.configurationextensions/8.0.0/microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.extensions.primitives/10.0.1/microsoft.extensions.primitives.10.0.1.nupkg.sha512",
+    "/home/vanja/.nuget/packages/microsoft.jsinterop/7.0.1/microsoft.jsinterop.7.0.1.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.net.http.headers/2.3.0/microsoft.net.http.headers.2.3.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/npgsql/10.0.0/npgsql.10.0.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/npgsql.entityframeworkcore.postgresql/10.0.0/npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
     "/home/vanja/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.0/microsoft.aspnetcore.app.ref.10.0.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'Microsoft.AspNetCore.Components' 7.0.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-3fx3-85r4-8j3w",
+      "projectPath": "/home/vanja/Projekti/deskord_server/deskord_server.csproj",
+      "warningLevel": 1,
+      "filePath": "/home/vanja/Projekti/deskord_server/deskord_server.csproj",
+      "libraryId": "Microsoft.AspNetCore.Components",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
     {
       "code": "NU1904",
       "level": "Warning",

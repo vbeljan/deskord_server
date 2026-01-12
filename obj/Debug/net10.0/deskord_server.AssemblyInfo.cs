@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("deskord_server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89ff647dbf383631dceb3ebb75e1a965d898c79c")]
 [assembly: System.Reflection.AssemblyProductAttribute("deskord_server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("deskord_server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

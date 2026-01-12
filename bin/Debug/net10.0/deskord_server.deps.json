@@ -8,12 +8,21 @@
     ".NETCoreApp,Version=v10.0": {
       "deskord_server/1.0.0": {
         "dependencies": {
+          "Blazored.SessionStorage": "2.4.0",
           "Microsoft.AspNetCore": "2.3.0",
           "Microsoft.EntityFrameworkCore": "10.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0"
         },
         "runtime": {
           "deskord_server.dll": {}
+        }
+      },
+      "Blazored.SessionStorage/2.4.0": {
+        "runtime": {
+          "lib/net7.0/Blazored.SessionStorage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Microsoft.AspNetCore/2.3.0": {
@@ -203,6 +212,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Blazored.SessionStorage/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e3XXH+zGGxDq1zC7YzLDD8mfvtoC6ESwTWOGD25H+FbPJlB7yQeL72hDY76tqkcrh98fh+y12r4BNhyQVV9YKw==",
+      "path": "blazored.sessionstorage/2.4.0",
+      "hashPath": "blazored.sessionstorage.2.4.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.3.0": {
       "type": "package",

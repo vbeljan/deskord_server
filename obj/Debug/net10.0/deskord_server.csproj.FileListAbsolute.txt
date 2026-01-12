@@ -100,3 +100,5 @@
 /home/vanja/Projekti/deskord_server/obj/Debug/net10.0/deskord_server.pdb
 /home/vanja/Projekti/deskord_server/obj/Debug/net10.0/deskord_server.genruntimeconfig.cache
 /home/vanja/Projekti/deskord_server/obj/Debug/net10.0/ref/deskord_server.dll
+/home/vanja/Projekti/deskord_server/obj/Debug/net10.0/deskord_server.sourcelink.json
+/home/vanja/Projekti/deskord_server/bin/Debug/net10.0/Blazored.SessionStorage.dll

@@ -12,9 +12,8 @@ if (desks == null) {
     }
 else {
     foreach (var desk in desks) {
-        <DeskComponent Desk="desk" />
+        <DeskComponent @rendermode="InteractiveServer" Desk="desk" />
         }
-            
     }
 }
 

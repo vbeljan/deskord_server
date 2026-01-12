@@ -2,6 +2,7 @@ using deskord_server.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using deskord_server.Data;
+using Blazored.SessionStorage;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
                .EnableDetailedErrors()
                .EnableSensitiveDataLogging()
                .LogTo(Console.WriteLine))
+        .AddBlazoredSessionStorage()
         .AddRazorComponents()
         .AddInteractiveServerComponents();
 
@@ -21,6 +23,8 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
+
+    app.Logger.LogInformation("Can connect to database: {CanConnect}", context.Database.CanConnect());
     await DbInterface.Initialize(context);
 }
 

@@ -1,5 +1,10 @@
 @page "/login"
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using deskord_server.Data
+@using deskord_server.Models
 @inject NavigationManager NavigationManager
+@inject AppDbContext AppDbContext
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage;
 
 <h3>Login</h3>
 
@@ -29,16 +34,44 @@
 
     private async Task HandleLogin()
     {
-        // Dummy authentication
-        if (Model?.Username == "testuser" && Model?.Password == "password")
-        {
-            // Simulate login success
-            NavigationManager.NavigateTo("/");
-        }
-        else
+        if (Model == null || 
+            string.IsNullOrWhiteSpace(Model.Username) ||
+            string.IsNullOrWhiteSpace(Model.Password))
         {
             NavigationManager.NavigateTo("/failed_login");
         }
+        else 
+        {
+            var userdata = await DbInterface.FindUser
+                                    (AppDbContext, Model.Username);
+            CheckLogin(Model.Password, userdata);
+        }
+
+        // Dummy authentication
+        //@* if (Model?.Username == "testuser" && Model?.Password == "password")
+        //{
+        // Simulate login success
+        //NavigationManager.NavigateTo("/"); *@
+        //}
+        //else
+        //{
+        //NavigationManager.NavigateTo("/failed_login");
+        //}
+    }
+
+    private async Task CheckLogin(string password, User? user) 
+    {
+        Console.WriteLine("TRIGGERED LOGIN");
+        if (user != null
+            && string.Equals(password, user.password)) 
+        {
+            await sessionStorage.SetItemAsync("user", user);
+            Console.WriteLine("SET ITEM: {0}", user);
+            Console.WriteLine("IN STORE: {0}", 
+                                await sessionStorage.KeysAsync());
+            NavigationManager.NavigateTo("/");
+        }
+        else NavigationManager.NavigateTo("/failed_login");
     }
 
     public class UserModel
