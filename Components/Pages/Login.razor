@@ -1,3 +1,4 @@
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 @page "/login"
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 @using deskord_server.Data
@@ -44,7 +45,7 @@
         {
             var userdata = await DbInterface.FindUser
                                     (AppDbContext, Model.Username);
-            CheckLogin(Model.Password, userdata);
+            await CheckLogin(Model.Password, userdata);
         }
 
         // Dummy authentication
@@ -61,7 +62,7 @@
 
     private async Task CheckLogin(string password, User? user) 
     {
-        Console.WriteLine("TRIGGERED LOGIN");
+        Console.WriteLine("TRIGGERED LOGIN, user is {0}, password is {1}", user, password);
         if (user != null
             && string.Equals(password, user.password)) 
         {

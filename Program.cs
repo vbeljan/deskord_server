@@ -25,7 +25,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<AppDbContext>();
 
     app.Logger.LogInformation("Can connect to database: {CanConnect}", context.Database.CanConnect());
-    await DbInterface.Initialize(context);
+    //await DbInterface.Initialize(context);
 }
 
 // Configure the HTTP request pipeline.

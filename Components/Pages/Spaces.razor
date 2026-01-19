@@ -2,17 +2,17 @@
 @using Microsoft.EntityFrameworkCore.Diagnostics;
 @using deskord_server.Data
 @using deskord_server.Models
-@inject AppDbContext AppDbContext;
+@inject AppDbContext AppDbContext
 
 
-<PageTitle>Spaces</PageTitle>
+<PageTitle>Deskord - Reserve your desk</PageTitle>
         @{
 if (desks == null) {
     <div>Loading...</div>
     }
 else {
     foreach (var desk in desks) {
-        <DeskComponent @rendermode="InteractiveServer" Desk="desk" />
+        <DeskComponent Desk="desk" />
         }
     }
 }
@@ -20,6 +20,6 @@ else {
 @code {
     private List<Desk> desks = null;
     protected override async Task OnInitializedAsync(){
-    desks = await DbInterface.GetAllDesks(AppDbContext);
+        desks = await DbInterface.GetAllDesks(AppDbContext);
     }
 }

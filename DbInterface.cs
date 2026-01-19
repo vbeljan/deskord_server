@@ -23,9 +23,15 @@ public static class DbInterface
         return;
     }
 
-    public static async Task Save(AppDbContext context, List<Desk> desks_to_save)
+    public static async Task SaveDesks(AppDbContext context, List<Desk> desks_to_save)
     {
         context.desks.UpdateRange(desks_to_save);
+        await context.SaveChangesAndNotifyAsync();
+        return;
+    }
+    public static async Task SaveUsers(AppDbContext context, List<User> users_to_save)
+    {
+        context.users.UpdateRange(users_to_save);
         await context.SaveChangesAndNotifyAsync();
         return;
     }

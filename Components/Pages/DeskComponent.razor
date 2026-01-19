@@ -4,6 +4,7 @@
 @using deskord_server.Models
 @inject AppDbContext AppDbContext
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage;
+@inject NavigationManager NavigationManager;
 
 @code {
     [Parameter]
@@ -17,25 +18,58 @@
         return Desk.occupiedby == null ? $"Available" : Desk.occupiedby;
     }
 
-    private async Task HandleReserve() {
-        if (await sessionStorage.ContainKeyAsync("user")) {
-            var user = 
-                await sessionStorage.GetItemAsync<User>("user");
-            Console.WriteLine("STORED USER: {user}");
-            Desk.occupiedby = user.fullname;
-            await DbInterface.Save(AppDbContext, [Desk]);
-        }
-        else {
-            var logdata = await sessionStorage.KeysAsync();
-            Console.WriteLine("NO STORED USER: {0}", logdata);
-        } 
-        return;
+    private string GetButtonText() {
+        return Desk.occupiedby == null ? $"Make Reservation" : $"Cancel Reservation";
     }
+
+    private async Task HandleReserve() {
+        if (!await sessionStorage.ContainKeyAsync("user"))
+            return;
+        
+        var userCached = await sessionStorage.GetItemAsync<User>("user");
+
+        var user = await DbInterface.FindUser(AppDbContext, userCached.email);
+        if (user == null)
+        {
+            Console.WriteLine("USER NOT FOUND");
+            await sessionStorage.RemoveItemAsync("user");
+            NavigationManager.NavigateTo("/login");
+            return;
+        }
+
+        var action = (Desk.occupiedby, 
+                      IsCurrentUser: user.used_desk == Desk.deskid && Desk.occupiedby == user.fullname, 
+                      DoesUserHaveDesk: user.used_desk != null) switch {
+            (null, _, false)    => DeskAction.Reserve,
+            (_, true, true)    => DeskAction.Cancel,
+            //(_, false, true)   => DeskAction.None, 
+            (_, false, _)   => DeskAction.None
+        };
+        
+        switch (action) {
+            case DeskAction.Cancel:
+                Desk.occupiedby = null;
+                user.used_desk = null;
+                await DbInterface.SaveDesks(AppDbContext, [Desk]);
+                await DbInterface.SaveUsers(AppDbContext, [user]);
+                break;
+            case DeskAction.Reserve:
+                Desk.occupiedby = user.fullname;
+                user.used_desk = Desk.deskid;
+                await DbInterface.SaveDesks(AppDbContext, [Desk]);
+                await DbInterface.SaveUsers(AppDbContext, [user]);
+                break;
+            case DeskAction.None:
+                break;
+        }
+}
+
+private enum DeskAction { Reserve, Cancel, None }
 }
 <div class="container mt-5 border rounded">
     <div class="d-flex justify-content-between align-items-center">
             <span style="color: black;">@Desk.deskid</span>
             <span style="color: @GetStatusColor()">@GetStatus()</span>
-            <button class="btn btn-primary" @onclick="HandleReserve">Make Reservation</button>
+            <button class="btn btn-primary" @onclick="HandleReserve">@GetButtonText()</button>
         </div>
 </div>
